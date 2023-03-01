@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4915fe62-9399-4eb8-9320-dc4f6345df6e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/jsx/ExerciseForm.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/ExerciseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c0f0c953-4b9c-4a2c-8739-e4d66cc0f5b6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c0f0c953-4b9c-4a2c-8739-e4d66cc0f5b6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/jsx/LoginForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/jsx/LoginForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LoginController.php" afterDir="false" />
-    </list>
+    <list default="true" id="4915fe62-9399-4eb8-9320-dc4f6345df6e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -214,7 +202,7 @@
       <workItem from="1677449711834" duration="315000" />
       <workItem from="1677454076270" duration="718000" />
       <workItem from="1677454818081" duration="1386000" />
-      <workItem from="1677491379035" duration="2136000" />
+      <workItem from="1677491379035" duration="2565000" />
     </task>
     <servers />
   </component>
