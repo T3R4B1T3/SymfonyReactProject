@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const LoginForm = () => {
     const [username, setUsername] = useState('');
@@ -7,37 +8,27 @@ const LoginForm = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const response = await fetch('/login_check', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ username, password }),
-        });
-
-        if (response.ok) {
-            // Przekieruj użytkownika na stronę po zalogowaniu
-            window.location.href = '/home';
-        } else {
-            alert('Nie udało się zalogować');
+        try {
+            const response = await axios.post('/api/login', { username, password });
+            console.log(response.data);
+        } catch (error) {
+            console.log(error);
         }
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            <div>
-                <label>
-                    Nazwa użytkownika:
-                    <input type="text" value={username} onChange={(event) => setUsername(event.target.value)} />
-                </label>
-            </div>
-            <div>
-                <label>
-                    Hasło:
-                    <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
-                </label>
-            </div>
-            <button type="submit">Zaloguj</button>
+            <label>
+                Username:
+                <input type="text" value={username} onChange={(event) => setUsername(event.target.value)} />
+            </label>
+            <br />
+            <label>
+                Password:
+                <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
+            </label>
+            <br />
+            <button type="submit">Log in</button>
         </form>
     );
 };

@@ -1,62 +1,51 @@
 <?php
+
 namespace App\Controller;
 
-use App\Entity\User;
-use Doctrine\Persistence\ManagerRegistry;
-use http\Client\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-
+use Symfony\Component\Security\Csrf\CsrfToken;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\User;
+use Symfony\Component\Routing\Annotation\Route;
 class LoginController extends AbstractController
 {
+    private $csrfTokenManager;
+    private $entityManager;
+
+    public function __construct(CsrfTokenManagerInterface $csrfTokenManager, EntityManagerInterface $entityManager)
+    {
+        $this->csrfTokenManager = $csrfTokenManager;
+        $this->entityManager = $entityManager;
+    }
     /**
      * @Route("/login", name="app_login")
      */
-    public function login(AuthenticationUtils $authenticationUtils)
-    {
-        // pobierz błędy logowania, jeśli takie istnieją
-        $error = $authenticationUtils->getLastAuthenticationError();
-        $lastUsername = $authenticationUtils->getLastUsername();
-
-        return $this->render('login/index.html.twig', [
-            'last_username' => $lastUsername,
-            'error' => $error,
-        ]);
-    }
-
-    /**
-     * @Route("/login_check", name="app_login_check")
-     */
-    public function loginCheck(Request $request, ManagerRegistry $doctrine): \Symfony\Component\HttpFoundation\RedirectResponse
+    public function login(Request $request)
     {
         $username = $request->request->get('username');
         $password = $request->request->get('password');
+        $csrfToken = $request->request->get('_csrf_token');
 
-        $entityManager = $doctrine->getManager();
-        $user = $entityManager->getRepository(User::class)->findOneBy(['username' => $username]);
+        if (!$this->csrfTokenManager->isTokenValid(new CsrfToken('authenticate', $csrfToken))) {
+            throw new BadCredentialsException('Invalid CSRF token.');
+        }
+
+        $user = $this->entityManager->getRepository(User::class)->findOneBy(['username' => $username]);
 
         if (!$user) {
-            throw new BadCredentialsException('Nieprawidłowe dane logowania');
+            throw $this->createNotFoundException();
         }
 
-        $isPasswordValid = $this->get('security.password_encoder')
-            ->isPasswordValid($user, $password);
-
-        if ($isPasswordValid) {
-            return $this->redirectToRoute('home');
-        } else {
-            throw new BadCredentialsException('Nieprawidłowe dane logowania');
+        if (!password_verify($password, $user->getPassword())) {
+            throw new BadCredentialsException();
         }
-    }
 
-    /**
-     * @Route("/logout", name="app_logout")
-     */
-    public function logout()
-    {
-        // kontroler nie robi niczego - jego celem jest zwrócenie odpowiedzi HTTP
+        $this->get('security.token_storage')->setToken(null);
+
+        return new JsonResponse(['message' => 'Logged in successfully.']);
     }
 }
