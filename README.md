@@ -12,26 +12,6 @@ Full-stack application combining **Symfony 6.2** (PHP) as backend and **React** 
 - **Mailing & Notifications:** Symfony Mailer & Notifier
 - **Testing:** PHPUnit, Symfony Test Components
 
-## 📁 Project Structure
-
-```
-SymfonyReactProject/
-├── backend/              # Symfony application
-│   ├── config/
-│   ├── src/
-│   ├── templates/
-│   ├── migrations/
-│   └── public/           # Entry point (index.php)
-├── frontend/             # React app
-│   ├── src/
-│   ├── public/
-│   ├── package.json
-│   └── vite.config.js
-├── .env
-├── composer.json
-└── README.md
-```
-
 ## 🚀 Getting Started
 
 ### 1. Clone the repository
