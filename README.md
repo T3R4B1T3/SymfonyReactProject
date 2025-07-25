@@ -26,7 +26,6 @@ cd SymfonyReactProject
 ### 2. Backend Setup (Symfony)
 
 ```bash
-cd backend
 composer install
 cp .env.example .env
 php bin/console doctrine:database:create
@@ -41,7 +40,6 @@ symfony server:start
 ### 3. Frontend Setup (React)
 
 ```bash
-cd frontend
 npm install
 npm run dev
 ```
@@ -56,15 +54,6 @@ npm run dev
 - Doctrine ORM + migrations
 - Debugging via Web Profiler
 - PHPUnit tests
-
----
-
-## 🧪 Running Tests
-
-```bash
-cd backend
-php bin/phpunit
-```
 
 ---
 
